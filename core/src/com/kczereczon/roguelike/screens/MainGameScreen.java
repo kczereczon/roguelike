@@ -4,15 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.kczereczon.roguelike.RoguelikeGame;
 import com.kczereczon.roguelike.objects.Player;
+import com.kczereczon.roguelike.objects.mobs.Rabbit;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainGameScreen implements Screen {
 
     final RoguelikeGame game;
     OrthographicCamera camera;
-    Texture texture;
 
     Player player;
 
@@ -21,9 +23,10 @@ public class MainGameScreen implements Screen {
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 600);
-        texture = new Texture("badlogic.jpg");
 
         player = new Player();
+
+
     }
 
     @Override
@@ -31,8 +34,8 @@ public class MainGameScreen implements Screen {
 
     }
 
-    public void update() {
-        player.update();
+    public void update(float delta) {
+        player.update(delta);
     }
 
     @Override
@@ -40,7 +43,7 @@ public class MainGameScreen implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        update();
+        update(delta);
 
         game.batch.begin();
         player.draw(game.batch);
