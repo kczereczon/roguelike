@@ -9,7 +9,7 @@ public class Monster extends Existence {
 
     public float moveTimer;
     public float moveLimiter;
-    public Random rand;
+    public Random rand = new Random();
 
 
 
@@ -29,7 +29,7 @@ public class Monster extends Existence {
     }
 
     public boolean shouldMove() {
-        if(moveTimer >= moveTimer) {
+        if(moveTimer >= moveLimiter) {
             resetMoveTimer(2, 4);
             return true;
         }
@@ -38,7 +38,11 @@ public class Monster extends Existence {
 
     public void resetMoveTimer(int min, int max) {
         moveTimer = 0;
-        moveLimiter = rand.nextInt((max - min) + 1) + min;
+        moveLimiter = getRandInt(min, max);
+    }
+
+    public int getRandInt(int min, int max) {
+        return rand.nextInt((max - min) + 1) + min;
     }
 
     public void move() {
