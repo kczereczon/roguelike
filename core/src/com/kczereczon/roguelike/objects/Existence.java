@@ -8,6 +8,8 @@ public class Existence extends Sprite {
     private String name;
     private int health = 0;
 
+    public Physics physics;
+
     public Existence(Texture texture, int health, int mass, String name) {
         super(texture);
         this.health = health;

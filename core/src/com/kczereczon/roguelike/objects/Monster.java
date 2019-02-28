@@ -2,6 +2,8 @@ package com.kczereczon.roguelike.objects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.Random;
 
@@ -12,9 +14,9 @@ public class Monster extends Existence {
     public Random rand = new Random();
 
 
-
-    public Monster(Texture texture, int health, int mass, String name) {
+    public Monster(World world, Texture texture, int health, int mass, String name) {
         super(texture, health, mass, name);
+        physics = new Physics(world, BodyDef.BodyType.DynamicBody, this);
         resetMoveTimer(2, 4);
     }
 
