@@ -49,8 +49,7 @@ public class MainGameScreen implements Screen {
         player.update(delta);
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
 
-        camera.position.set(new Vector3(player.getX(), player.getY(), 0));
-        camera.update();
+
         for (Rabbit rabbit: rabbits
              ) {
             rabbit.update(delta);
@@ -65,10 +64,12 @@ public class MainGameScreen implements Screen {
         update(delta);
 
         game.batch.begin();
-        game.batch.draw(player, player.physics.body.getPosition().x, player.physics.body.getPosition().y);
+        camera.position.set(new Vector3(player.getFixedPosition().x, player.getFixedPosition().y, 0));
+        camera.update();
+        game.batch.draw(player.getSprite(), player.getFixedPosition().x, player.getFixedPosition().y);
         for (Rabbit rabbit: rabbits
         ) {
-            game.batch.draw(rabbit, rabbit.physics.body.getPosition().x, rabbit.physics.body.getPosition().y);
+            game.batch.draw(rabbit.getSprite(), rabbit.getFixedPosition().x, rabbit.getFixedPosition().y);
         }
         debugRenderer.render(world, camera.combined);
         game.batch.end();

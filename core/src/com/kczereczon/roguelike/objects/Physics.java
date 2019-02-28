@@ -12,13 +12,13 @@ public class Physics {
     public Physics(World world, BodyDef.BodyType bodyType, Sprite sprite) {
         body = createBody(world, bodyType, sprite);
         fixture = createFixture(world, sprite);
-
+        body.setLinearDamping(2.5f);
+        body.setFixedRotation(true);
     }
 
     private Body createBody(World world, BodyDef.BodyType bodyType, Sprite sprite) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = bodyType;
-       // bodyDef.position.(sprite.getX() - sprite.getWidth()/2, sprite.getY() + sprite.getHeight());
         return  world.createBody(bodyDef);
     }
 
