@@ -7,7 +7,7 @@ import com.kczereczon.roguelike.screens.MainGameScreen;
 
 public class RoguelikeGame extends Game {
 	public SpriteBatch batch;
-	BitmapFont font;
+	private BitmapFont font;
 
 	@Override
 	public void create () {

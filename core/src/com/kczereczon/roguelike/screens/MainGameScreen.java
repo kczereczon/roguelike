@@ -18,26 +18,29 @@ import java.util.List;
 
 public class MainGameScreen implements Screen {
 
-    final RoguelikeGame game;
+    private final RoguelikeGame game;
 
-    OrthographicCamera camera;
-    Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+    private OrthographicCamera camera;
+    private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 
-    public World world;
+    private World world;
 
-    Player player;
-    List<Rabbit> rabbits = new ArrayList<Rabbit>();
+    private Player player;
+    private List<Rabbit> rabbits = new ArrayList<Rabbit>();
 
     public MainGameScreen(final RoguelikeGame game) {
         this.game = game;
         world = new World(new Vector2(0,0), true);
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, ScreenConfig.WIDTH / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE,ScreenConfig.HEIGHT / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE);
+        //noinspection IntegerDivisionInFloatingPointContext
+        camera.setToOrtho(false,
+                ScreenConfig.WIDTH / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE,
+                ScreenConfig.HEIGHT / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE);
 
         player = new Player(world);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 10; i++) {
             rabbits.add(new Rabbit(world));
         }
     }
@@ -47,7 +50,7 @@ public class MainGameScreen implements Screen {
 
     }
 
-    public void update(float delta) {
+    private void update(float delta) {
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
         player.update(delta);
         for (Rabbit rabbit: rabbits
