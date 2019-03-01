@@ -17,15 +17,15 @@ public class Player extends Existence {
     @Override
     public void movement(float delta) {
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            getBody().applyForceToCenter(new Vector2(200000, 0), true);
+            getBody().applyForceToCenter(new Vector2(20, 0), true);
         } else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            getBody().applyForce(new Vector2(-200000, 0),getBody().getWorldCenter(), true);
+            getBody().applyForce(new Vector2(-20, 0),getBody().getWorldCenter(), true);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            getBody().applyForce(new Vector2(0, 200000),getBody().getPosition(), true);
+            getBody().applyForce(new Vector2(0, 20),getBody().getPosition(), true);
         } else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            getBody().applyForce(new Vector2(0, -200000),getBody().getPosition(), true);
+            getBody().applyForce(new Vector2(0, -20),getBody().getPosition(), true);
         }
 
     }

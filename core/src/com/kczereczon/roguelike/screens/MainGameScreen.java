@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.kczereczon.roguelike.RoguelikeGame;
+import com.kczereczon.roguelike.config.ScreenConfig;
 import com.kczereczon.roguelike.objects.Player;
 import com.kczereczon.roguelike.objects.mobs.Rabbit;
 
@@ -18,12 +19,13 @@ import java.util.List;
 public class MainGameScreen implements Screen {
 
     final RoguelikeGame game;
+
     OrthographicCamera camera;
     Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+
     public World world;
 
     Player player;
-
     List<Rabbit> rabbits = new ArrayList<Rabbit>();
 
     public MainGameScreen(final RoguelikeGame game) {
@@ -31,7 +33,7 @@ public class MainGameScreen implements Screen {
         world = new World(new Vector2(0,0), true);
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800/2, 600/2);
+        camera.setToOrtho(false, ScreenConfig.WIDTH / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE,ScreenConfig.HEIGHT / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE);
 
         player = new Player(world);
 
@@ -46,10 +48,8 @@ public class MainGameScreen implements Screen {
     }
 
     public void update(float delta) {
-        player.update(delta);
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
-
-
+        player.update(delta);
         for (Rabbit rabbit: rabbits
              ) {
             rabbit.update(delta);
@@ -66,10 +66,10 @@ public class MainGameScreen implements Screen {
         game.batch.begin();
         camera.position.set(new Vector3(player.getFixedPosition().x, player.getFixedPosition().y, 0));
         camera.update();
-        game.batch.draw(player.getSprite(), player.getFixedPosition().x, player.getFixedPosition().y);
+        player.draw(game.batch);
         for (Rabbit rabbit: rabbits
         ) {
-            game.batch.draw(rabbit.getSprite(), rabbit.getFixedPosition().x, rabbit.getFixedPosition().y);
+            rabbit.draw(game.batch);
         }
         debugRenderer.render(world, camera.combined);
         game.batch.end();

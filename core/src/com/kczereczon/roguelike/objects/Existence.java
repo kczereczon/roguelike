@@ -1,11 +1,15 @@
 package com.kczereczon.roguelike.objects;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.kczereczon.roguelike.config.ScreenConfig;
 
 public class Existence {
 
@@ -38,13 +42,21 @@ public class Existence {
     }
 
     public Vector2 getFixedPosition() {
-        return new Vector2( getBody().getPosition().x - sprite.getWidth()/2, getBody().getPosition().y - sprite.getHeight()/2);
+        return new Vector2(getBody().getPosition().x - getPhysics().getBodySize().x, getBody().getPosition().y - getPhysics().getBodySize().y);
+    }
+
+    public Vector2 getFixedSize() {
+        return  new Vector2(sprite.getWidth() / ScreenConfig.PPM, sprite.getHeight() / ScreenConfig.PPM);
     }
 
     public void movement(float delta){}
 
     public void update(float delta) {
         movement(delta);
+    }
+
+    public void draw(SpriteBatch batch) {
+        batch.draw(sprite, getFixedPosition().x, getFixedPosition().y, getFixedSize().x, getFixedSize().y);
     }
 
 }
