@@ -8,9 +8,9 @@ package com.kczereczon.roguelike.config;
 
 public class ScreenConfig {
 
-    public static final int PPM = 32;
+    public static final int PPM = 24;
     public static final int WIDTH = 1270;
     public static final int HEIGHT = 720;
-    public static final float WORLD_SCALE = 0.6f;
+    public static final float WORLD_SCALE = 0.2f;
 
 }

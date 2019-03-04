@@ -22,13 +22,14 @@ class Physics {
     private Body createBody(World world, BodyDef.BodyType bodyType, Sprite sprite) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = bodyType;
+        //bodyDef.position.set(sprite.getWidth() / ScreenConfig.PPM, sprite.getHeight()/ScreenConfig.PPM);
         return  world.createBody(bodyDef);
     }
 
     private Fixture createFixture(World world, Sprite sprite) {
         PolygonShape shape = new PolygonShape();
 
-        bodySize = new Vector2(sprite.getWidth() / ScreenConfig.PPM / 2, sprite.getHeight() / ScreenConfig.PPM / 2);
+        bodySize = new Vector2(sprite.getWidth() / ScreenConfig.PPM / 3, sprite.getHeight() / ScreenConfig.PPM / 3);
 
         shape.setAsBox(bodySize.x, bodySize.y);
         FixtureDef fixtureDef = new FixtureDef();

@@ -2,8 +2,13 @@ package com.kczereczon.roguelike.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -22,6 +27,8 @@ public class MainGameScreen implements Screen {
 
     private OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+    TiledMap tiledMap;
+    TiledMapRenderer tiledMapRenderer;
 
     private World world;
 
@@ -31,6 +38,8 @@ public class MainGameScreen implements Screen {
     public MainGameScreen(final RoguelikeGame game) {
         this.game = game;
         world = new World(new Vector2(0,0), true);
+        tiledMap = new TmxMapLoader(new ExternalFileHandleResolver()).load("java/roguelike/core/assets/maps/map1/map1.tmx");
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1f/ScreenConfig.PPM);
 
         camera = new OrthographicCamera();
         //noinspection IntegerDivisionInFloatingPointContext
@@ -38,7 +47,7 @@ public class MainGameScreen implements Screen {
                 ScreenConfig.WIDTH / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE,
                 ScreenConfig.HEIGHT / ScreenConfig.PPM * ScreenConfig.WORLD_SCALE);
 
-        player = new Player(world);
+        player = new Player(world, new Vector2(8,4));
 
         for (int i = 1; i < 10; i++) {
             rabbits.add(new Rabbit(world));
@@ -65,10 +74,12 @@ public class MainGameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         update(delta);
-
-        game.batch.begin();
         camera.position.set(new Vector3(player.getFixedPosition().x, player.getFixedPosition().y, 0));
         camera.update();
+        tiledMapRenderer.setView(camera);
+        tiledMapRenderer.render();
+
+        game.batch.begin();
         player.draw(game.batch);
         for (Rabbit rabbit: rabbits
         ) {

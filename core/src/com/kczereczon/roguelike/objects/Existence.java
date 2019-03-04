@@ -24,7 +24,7 @@ public class Existence {
     private Sprite sprite;
 
     public Existence(World world, BodyDef.BodyType bodyType, Texture texture, String name) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(texture, 32,32);
         physics = new Physics(world, bodyType, sprite);
         this.name = name;
     }
