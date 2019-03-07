@@ -17,6 +17,8 @@ class Physics {
 
         body.setLinearDamping(5);
         body.setFixedRotation(true);
+
+        System.out.println("created");
     }
 
     private Body createBody(World world, BodyDef.BodyType bodyType, Sprite sprite) {

@@ -15,10 +15,10 @@ public class Existence {
 
     private String name;
 
-    private int vitality = 0;
-    private int strenght = 0;
-    private int dexterity = 0;
-    private int inteligance = 0;
+    private int vitality = 1;
+    private int strenght = 1;
+    private int dexterity = 1;
+    private int inteligance = 1;
 
     private Physics physics;
     private Sprite sprite;

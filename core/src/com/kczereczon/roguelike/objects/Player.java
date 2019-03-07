@@ -8,11 +8,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Player extends Existence {
-    public Player(World world,Vector2 position) {
-        super(world, BodyDef.BodyType.DynamicBody, new Texture("Player.png"), "Dovakin");
-        this.getBody().setTransform(position.x, position.y, this.getBody().getAngle());
-        this.setDexterity(10);
-        this.getPhysics().updateDamping(this.getDexterity());
+    public Player(World world,Texture texture) {
+        super(world, BodyDef.BodyType.DynamicBody,texture, "Dovakin");
+        System.out.println(getBody().getPosition());
     }
 
     @Override
