@@ -27,8 +27,6 @@ public class MainGameScreen implements Screen {
 
     private OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
-    TiledMap tiledMap;
-    TiledMapRenderer tiledMapRenderer;
 
     private World world;
 
@@ -38,8 +36,6 @@ public class MainGameScreen implements Screen {
     public MainGameScreen(final RoguelikeGame game) {
         this.game = game;
         world = new World(new Vector2(0,0), true);
-        tiledMap = new TmxMapLoader(new ExternalFileHandleResolver()).load("java/roguelike/core/assets/maps/map1/map1.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1f/ScreenConfig.PPM);
 
         camera = new OrthographicCamera();
         //noinspection IntegerDivisionInFloatingPointContext
@@ -76,8 +72,6 @@ public class MainGameScreen implements Screen {
         update(delta);
         camera.position.set(new Vector3(player.getFixedPosition().x, player.getFixedPosition().y, 0));
         camera.update();
-        tiledMapRenderer.setView(camera);
-        tiledMapRenderer.render();
 
         game.batch.begin();
         player.draw(game.batch);
