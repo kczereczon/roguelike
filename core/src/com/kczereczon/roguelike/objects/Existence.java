@@ -25,6 +25,7 @@ public class Existence {
 
     public Existence(World world, BodyDef.BodyType bodyType, Texture texture, String name) {
         sprite = new Sprite(texture, 32,32);
+        System.out.println(texture.getTextureData());
         physics = new Physics(world, bodyType, sprite);
         this.name = name;
     }
@@ -49,6 +50,8 @@ public class Existence {
         return  new Vector2(sprite.getWidth() / ScreenConfig.PPM, sprite.getHeight() / ScreenConfig.PPM);
     }
 
+
+
     public void movement(float delta){}
 
     public void update(float delta) {
@@ -59,4 +62,11 @@ public class Existence {
         batch.draw(sprite, getFixedPosition().x, getFixedPosition().y, getFixedSize().x, getFixedSize().y);
     }
 
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
 }

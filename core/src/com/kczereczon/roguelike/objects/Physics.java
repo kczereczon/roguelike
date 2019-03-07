@@ -29,7 +29,7 @@ class Physics {
     private Fixture createFixture(World world, Sprite sprite) {
         PolygonShape shape = new PolygonShape();
 
-        bodySize = new Vector2(sprite.getWidth() / ScreenConfig.PPM / 3, sprite.getHeight() / ScreenConfig.PPM / 3);
+        bodySize = new Vector2(sprite.getWidth() / ScreenConfig.PPM / 2, sprite.getHeight() / ScreenConfig.PPM / 2);
 
         shape.setAsBox(bodySize.x, bodySize.y);
         FixtureDef fixtureDef = new FixtureDef();
@@ -45,5 +45,8 @@ class Physics {
         return bodySize;
     }
 
+    public void updateDamping(float dexterity) {
+        body.setLinearDamping(dexterity/2);
+    }
 
 }
