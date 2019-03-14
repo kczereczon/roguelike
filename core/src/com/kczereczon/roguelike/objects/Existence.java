@@ -42,7 +42,7 @@ public class Existence extends GameObject {
 
     public Vector2 getFixedPosition() {
         System.out.println(sprite.getWidth()/ScreenConfig.PPM);
-        return new Vector2(getBody().getPosition().x - getPhysics().getBodySize().x, getBody().getPosition().y - getPhysics().getBodySize().y);
+        return new Vector2(getBody().getPosition().x - getPhysics().getBodySize().x*2, getBody().getPosition().y - getPhysics().getBodySize().y*2);
     }
 
     public Vector2 getFixedSize() {
