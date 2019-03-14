@@ -29,18 +29,23 @@ public class GameWorld {
 
     public void update(float delta) {
         world.step(1f/60f, 6, 2);
+        cameraFollow();
         gameObjectManager.update(delta);
     }
 
     public void render(SpriteBatch batch) {
-        //debugRenderer.render(world,camera.combined);
+
         gameObjectManager.render(batch);
+        //debugRenderer.render(world,camera.combined);
+    }
 
-
+    public void cameraFollow() {
+        camera.position.set(gameObjectManager.getPlayer().getBody().getPosition(), 0);
     }
 
     public void dispose() {
         world.dispose();
+        debugRenderer.dispose();
         gameObjectManager.dispose();
     }
 

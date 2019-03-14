@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Player extends Existence {
     public Player(World world,Texture texture) {
         super(world, BodyDef.BodyType.DynamicBody,texture, "Dovakin");
-        System.out.println(getBody().getPosition());
     }
 
     @Override

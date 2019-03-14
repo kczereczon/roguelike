@@ -30,6 +30,10 @@ public class GameObjectManager {
         rabbit.draw(batch);
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public void dispose() {
         assetManager.dispose();
     }

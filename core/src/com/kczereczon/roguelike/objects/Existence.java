@@ -10,10 +10,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.kczereczon.roguelike.config.ScreenConfig;
+import com.kczereczon.roguelike.game.GameObject;
 
-public class Existence {
-
-    private String name;
+public class Existence extends GameObject {
 
     private int vitality = 1;
     private int strenght = 1;
@@ -24,10 +23,9 @@ public class Existence {
     private Sprite sprite;
 
     public Existence(World world, BodyDef.BodyType bodyType, Texture texture, String name) {
+        super(name, "existence");
         sprite = new Sprite(texture, 32,32);
-        System.out.println(texture.getTextureData());
         physics = new Physics(world, bodyType, sprite);
-        this.name = name;
     }
 
     public Physics getPhysics() {
@@ -43,14 +41,13 @@ public class Existence {
     }
 
     public Vector2 getFixedPosition() {
+        System.out.println(sprite.getWidth()/ScreenConfig.PPM);
         return new Vector2(getBody().getPosition().x - getPhysics().getBodySize().x, getBody().getPosition().y - getPhysics().getBodySize().y);
     }
 
     public Vector2 getFixedSize() {
         return  new Vector2(sprite.getWidth() / ScreenConfig.PPM, sprite.getHeight() / ScreenConfig.PPM);
     }
-
-
 
     public void movement(float delta){}
 

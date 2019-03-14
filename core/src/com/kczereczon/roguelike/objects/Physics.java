@@ -15,7 +15,7 @@ class Physics {
         body = createBody(world, bodyType, sprite);
         fixture = createFixture(world, sprite);
 
-        body.setLinearDamping(5);
+        body.setLinearDamping(2);
         body.setFixedRotation(true);
 
         System.out.println("created");
