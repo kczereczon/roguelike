@@ -36,7 +36,7 @@ public class GameWorld {
     public void render(SpriteBatch batch) {
 
         gameObjectManager.render(batch);
-        //debugRenderer.render(world,camera.combined);
+        debugRenderer.render(world,camera.combined);
     }
 
     public void cameraFollow() {

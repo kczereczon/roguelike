@@ -31,7 +31,7 @@ class Physics {
     private Fixture createFixture(World world, Sprite sprite) {
         PolygonShape shape = new PolygonShape();
 
-        bodySize = new Vector2(sprite.getWidth() / ScreenConfig.PPM / 2, sprite.getHeight() / ScreenConfig.PPM / 2);
+        bodySize = new Vector2(sprite.getWidth() / ScreenConfig.PPM / 4, sprite.getHeight() / ScreenConfig.PPM / 4);
 
         shape.setAsBox(bodySize.x, bodySize.y);
         FixtureDef fixtureDef = new FixtureDef();
