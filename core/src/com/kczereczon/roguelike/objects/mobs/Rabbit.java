@@ -12,11 +12,11 @@ public class Rabbit extends Existence {
 
     float moveTimer, moveDelay;
 
-    public Rabbit(World world) {
-        super(world, BodyDef.BodyType.DynamicBody, new Texture("Enemy.png"), "Rabbit");
+    public Rabbit(World world, Texture rabbitTexture, Vector2 position) {
+        super(world, BodyDef.BodyType.DynamicBody, rabbitTexture, "Rabbit");
         resetTimer();
-        getBody().setTransform(MathUtils.random(-100, 100) / ScreenConfig.PPM, MathUtils.random(-60, 60) / ScreenConfig.PPM,0);
-        //System.out.println("Created: " + new Vector2(getX(), getY()));
+        getBody().setTransform(position.x / ScreenConfig.PPM, position.y / ScreenConfig.PPM,0);
+        System.out.println("XD");
     }
 
     @Override

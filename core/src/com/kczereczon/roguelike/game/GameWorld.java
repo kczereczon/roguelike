@@ -1,5 +1,6 @@
 package com.kczereczon.roguelike.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -22,21 +23,27 @@ public class GameWorld {
         camera = screen.getCamera();
 
         world = new World(new Vector2(0,0), true);
+        mapManager = new MapManager();
+        //mapManager.setCurrentMap(new Map("first_map"));
         debugRenderer.render(world, camera.combined);
 
         gameObjectManager = new GameObjectManager(world);
+        gameObjectManager.addColliders(mapManager.getCurrentMap().getColliders());
+        gameObjectManager.addMobs(mapManager.getCurrentMap().getMobs());
     }
 
     public void update(float delta) {
-        world.step(1f/60f, 6, 2);
+        world.step(1f/60f, 6, 6);
         cameraFollow();
         gameObjectManager.update(delta);
+        mapManager.render(camera);
+        debugRenderer.render(world,camera.combined);
     }
 
     public void render(SpriteBatch batch) {
-
         gameObjectManager.render(batch);
-        //debugRenderer.render(world,camera.combined);
+
+
     }
 
     public void cameraFollow() {
@@ -46,7 +53,9 @@ public class GameWorld {
     public void dispose() {
         world.dispose();
         debugRenderer.dispose();
+        mapManager.dispose();
         gameObjectManager.dispose();
+
     }
 
 
