@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Player extends Existence {
     public Player(World world,Texture texture) {
         super(world, BodyDef.BodyType.DynamicBody,texture, "Dovakin");
+        getBody().setTransform(5.2f, 13.9f,0);
     }
 
     @Override
@@ -25,6 +26,8 @@ public class Player extends Existence {
         } else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             getBody().applyForce(new Vector2(0, -getDexterity() * 5),getBody().getPosition(), true);
         }
+
+        //System.out.println(getBody().getPosition());
 
     }
 
