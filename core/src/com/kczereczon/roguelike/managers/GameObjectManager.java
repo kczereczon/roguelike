@@ -11,8 +11,8 @@ public class GameObjectManager {
 
     AssetManager assetManager;
 
-    Player player;
-    Rabbit rabbit;
+    private Player player;
+    private Rabbit rabbit;
 
     public GameObjectManager(World world) {
         assetManager = new AssetManager();
